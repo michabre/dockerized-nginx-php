@@ -1,4 +1,4 @@
-version: "2"
+version: "3.8"
 
 services:
   web:
@@ -13,8 +13,8 @@ services:
     networks:
       - default
   php:
-    image: php:7.4.0RC3-fpm
-    container_name: php_7
+    image: php:8.3.2-fpm
+    container_name: php_8
     volumes:
       - ./app:/usr/share/nginx/html
       - ./php:/usr/local/etc/php/conf.d
