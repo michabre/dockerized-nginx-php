@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
   web:
@@ -25,7 +25,6 @@ services:
       - ./app:/usr/share/nginx/html
       - ./php:/usr/local/etc/php/conf.d
       - ./log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
-      - ./xhprof:/var/xhprof/xhprof-2.3.2
     networks:
       - default
   db:
@@ -53,7 +52,6 @@ services:
     ports:
       - 8081:80
 volumes:
-  xhprof:
   dbdata:
 networks:
   default:

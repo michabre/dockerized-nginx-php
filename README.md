@@ -18,3 +18,13 @@ Once running, you can modify the code in the **app** directory as you wish.
 You can check the **logs** to view any errors or access issues.
 
 In the **php** directory you can update the **my-php.ini** file or add other .ini files to modify the environment to your liking.
+
+## Useful Commands
+
+```shell
+docker exec -it <CONTAINER_ID> bash
+```
+
+## Resources
+
+- https://tecadmin.net/docker-compose-for-mysql-with-phpmyadmin/
