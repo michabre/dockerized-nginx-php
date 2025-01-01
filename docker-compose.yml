@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   web:
@@ -10,17 +10,49 @@ services:
       - ./app:/usr/share/nginx/html
       - ./site.conf:/etc/nginx/conf.d/default.conf
       - ./logs:/var/log/nginx/
+    environment:
+      - ENV=dev
     networks:
       - default
+    depends_on:
+      - php
   php:
-    image: php:7.4.0RC3-fpm
-    container_name: php_7
+    container_name: php_8
+    build:
+      context: .
+      dockerfile: Dockerfile-php
     volumes:
       - ./app:/usr/share/nginx/html
       - ./php:/usr/local/etc/php/conf.d
       - ./log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
     networks:
       - default
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  dbdata:
 networks:
   default:
     driver: bridge
