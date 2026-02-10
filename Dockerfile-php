@@ -1,4 +1,4 @@
-FROM php:8.4.2-fpm
+FROM php:8.4.11-fpm
 
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \
@@ -13,3 +13,6 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     graphviz
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug

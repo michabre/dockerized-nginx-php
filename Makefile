@@ -9,3 +9,6 @@ list:
 
 stop:
 	docker-compose down
+
+check-debug:
+	docker compose exec php php --ri xdebug

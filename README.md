@@ -62,6 +62,12 @@ make bash
 make stop
 ```
 
+## PMA Login
+
+Server: db
+User: db_user
+Password: db_user_pass
+
 ## Resources
 
 - <https://docs.docker.com/>
